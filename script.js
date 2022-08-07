@@ -4,3 +4,7 @@ let obstacle = document.getElementsByClassName("obstacle");
 function HitDetected(){
     
 }
+
+function JumpPressed(){
+    
+}
