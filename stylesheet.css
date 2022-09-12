@@ -43,14 +43,14 @@
     animation: obstacleMove 3s infinite linear;
 }
 
-#obstacleTwo{
+#obstacleTwo {
     position: absolute;
     width: 50px;
     height: 55px;
     top: 445px;
     outline: solid 1px black;
     background-color: orangered;
-    animation: obstacleMove 2s infinite linear; 
+    animation: obstacleMove 2s infinite linear;
 }
 
 @keyframes playerMove {
