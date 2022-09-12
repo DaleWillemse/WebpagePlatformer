@@ -15,11 +15,35 @@ document.addEventListener("keypress", e => {
     }
 });
 
+// player movement
+document.onkeydown = function (e) {
+    if (e.keyCode == 68) {
+        player.style.left = `${player.offsetLeft + 30}px`;
+    }
+    else if (e.keyCode == 65) {
+        player.style.left = `${player.offsetLeft - 30}px`;
+    }
+}
+
 setInterval(() => {
     let obstacleOnePos = obstacleOne.getBoundingClientRect();
     let obstacleTwoPos = obstacleTwo.getBoundingClientRect();
     let randomHeight = getRandomInt(5);
-
+    let playerPos = player.getBoundingClientRect();
+    if (playerPos.top < obstacleOnePos.top + obstacleOnePos.height &&
+        playerPos.top + playerPos.height > obstacleOnePos.top &&
+        playerPos.left < obstacleOnePos.left + obstacleOnePos.width &&
+        playerPos.left + playerPos.width > obstacleOnePos.left) {
+        alert(`Game Over. \nScore: ${points}`);
+        location.reload();
+    }
+    if (playerPos.top < obstacleTwoPos.top + obstacleTwoPos.height &&
+        playerPos.top + playerPos.height > obstacleTwoPos.top &&
+        playerPos.left < obstacleTwoPos.left + obstacleTwoPos.width &&
+        playerPos.left + playerPos.width > obstacleTwoPos.left) {
+        alert(`Game Over. \nScore: ${points}`);
+        location.reload();
+    }
     if (parseInt(obstacleOnePos.left) <= 0) {
         switch (randomHeight) {
             case 1:
@@ -46,8 +70,7 @@ setInterval(() => {
                 break;
         }
     }
-
-}, 100)
+}, 50);
 
 setInterval(() => {
     points++;

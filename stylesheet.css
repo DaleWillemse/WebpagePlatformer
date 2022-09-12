@@ -25,6 +25,7 @@
     height: 80px;
     top: 420px;
     left: 50px;
+    right: 0px;
     outline: solid 1px black;
     background-color: aqua;
 }
