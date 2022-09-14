@@ -4,8 +4,15 @@ var obstacleTwo = document.getElementById("obstacleTwo");
 var score = document.getElementById("score");
 var points = 0;
 
+// score counter
+setInterval(() => {
+    points++;
+    score.innerHTML = points;
+}, 1000)
+
+// player movement
 document.addEventListener("keypress", e => {
-    if (e.keyCode == 32) {
+    if (e.keyCode == 32 || e.keyCode == 119) {
         if (!player.classList.contains("animate")) {
             player.classList.add("animate");
             setTimeout(() => {
@@ -15,7 +22,6 @@ document.addEventListener("keypress", e => {
     }
 });
 
-// player movement
 document.onkeydown = function (e) {
     if (e.keyCode == 68) {
         player.style.left = `${player.offsetLeft + 30}px`;
@@ -25,6 +31,7 @@ document.onkeydown = function (e) {
     }
 }
 
+// collision detection
 setInterval(() => {
     let obstacleOnePos = obstacleOne.getBoundingClientRect();
     let obstacleTwoPos = obstacleTwo.getBoundingClientRect();
@@ -34,15 +41,18 @@ setInterval(() => {
         playerPos.top + playerPos.height > obstacleOnePos.top &&
         playerPos.left < obstacleOnePos.left + obstacleOnePos.width &&
         playerPos.left + playerPos.width > obstacleOnePos.left) {
-        alert(`Game Over. \nScore: ${points}`);
-        location.reload();
+        //alert(`Game Over. \nScore: ${points}`);
+        //location.reload();
+        points = 0;
     }
     if (playerPos.top < obstacleTwoPos.top + obstacleTwoPos.height &&
         playerPos.top + playerPos.height > obstacleTwoPos.top &&
         playerPos.left < obstacleTwoPos.left + obstacleTwoPos.width &&
         playerPos.left + playerPos.width > obstacleTwoPos.left) {
-        alert(`Game Over. \nScore: ${points}`);
-        location.reload();
+        //alert(`Game Over. \nScore: ${points}`);
+        //location.reload();
+        points = 0;
+
     }
     if (parseInt(obstacleOnePos.left) <= 0) {
         switch (randomHeight) {
@@ -71,11 +81,6 @@ setInterval(() => {
         }
     }
 }, 50);
-
-setInterval(() => {
-    points++;
-    score.innerHTML = points;
-}, 1000)
 
 function getRandomInt(max) {
     return (Math.floor(Math.random() * max));
